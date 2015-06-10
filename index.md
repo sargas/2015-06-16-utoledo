@@ -51,10 +51,11 @@ to be shared can and should be stored in a version control system.
 
 > ## Getting ready {.getready}
 >
-> Nothing to do: you're ready to go!
+> Please [install](00-install.html) Git before the workshop, and register for a [GitHub account](https://github.com/join).
 
 ## Topics
 
+0.  [Installing Git](00-install.html)
 1.  [Automated version control](01-basics.html)
 2.  [Setting Up Git](02-setup.html)
 3.  [Creating a Repository](03-create.html)
