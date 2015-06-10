@@ -6,8 +6,15 @@ minutes: 5
 ---
 > ## Learning Objectives {.objectives}
 >
+> *  Access help for the `git` command.
 > *  Configure `git` the first time is used on a computer.
 > *  Understand the meaning of the `--global` configuration flag.
+
+As with most commands, Git has a manual (man page) for viewing help:
+
+~~~ {.bash}
+$ man git
+~~~
 
 When we use Git on a new computer for the first time,
 we need to configure a few things.
@@ -27,6 +34,7 @@ He also has to set his favorite text editor, following this table:
 |:-------------------|:-------------------------------------------------|
 | nano               | `$ git config --global core.editor "nano -w"`    |
 | Text Wrangler      | `$ git config --global core.editor "edit -w"`    |
+| Emacs GUI (Mac)    | `$ git config --global core.editor "/Applications/Emacs.app/Contents/MacOS/Emacs"`|
 | Sublime Text (Mac) | `$ git config --global core.editor "subl -n -w"` |
 | Sublime Text (Win) | `$ git config --global core.editor "'c:/program files/sublime text 2/sublime_text.exe' -w"` |
 | Notepad++ (Win)    | `$ git config --global core.editor "'c:/program files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"`|
@@ -55,21 +63,3 @@ $ git config --list
 
 You can change your configuration as many times as you want: just use the
 same commands to choose another editor or update your email address.
-
-> ## Proxy {.callout}
->
-> In some networks you need to use a
-> [proxy](https://en.wikipedia.org/wiki/Proxy_server). If this is the case, you
-> may also need to tell Git about the proxy:
->
-> ~~~ {.bash}
-> $ git config --global http.proxy proxy-url
-> $ git config --global https.proxy proxy-url
-> ~~~
->
-> To disable the proxy, use
->
-> ~~~ {.bash}
-> $ git config --global --unset http.proxy
-> $ git config --global --unset https.proxy
-> ~~~
