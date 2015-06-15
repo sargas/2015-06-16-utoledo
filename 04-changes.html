@@ -73,12 +73,12 @@ nothing added to commit but untracked files present (use &quot;git add&quot; to 
 #   new file:   mars.txt
 #</code></pre>
 <p>Git now knows that it’s supposed to keep track of <code>mars.txt</code>, but it hasn’t recorded these changes as a commit yet. To get it to do that, we need to run one more command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -m <span class="st">&quot;Start notes on Mars as a base&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit</code></pre></div>
+<p>This gives us a text editor to write a message for the commit. Type the words: “Start notes on Mars as a base”, save, and quit:</p>
 <pre class="output"><code>[master (root-commit) f22b25e] Start notes on Mars as a base
  1 file changed, 1 insertion(+)
  create mode 100644 mars.txt</code></pre>
 <p>When we run <code>git commit</code>, Git takes everything we have told it to save by using <code>git add</code> and stores a copy permanently inside the special <code>.git</code> directory. This permanent copy is called a <a href="reference.html#commit">commit</a> (or <a href="reference.html#revision">revision</a>) and its short identifier is <code>f22b25e</code> (Your commit may have another identifier.)</p>
-<p>We use the <code>-m</code> flag (for “message”) to record a short, descriptive, and specific comment that will help us remember later on what we did and why. If we just run <code>git commit</code> without the <code>-m</code> option, Git will launch <code>nano</code> (or whatever other editor we configured as <code>core.editor</code>) so that we can write a longer message.</p>
 <p><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">Good commit messages</a> start with a brief (&lt;50 characters) summary of changes made in the commit. If you want to go into more detail, add a blank line between the summary line and your additional notes.</p>
 <p>If we run <code>git status</code> now:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre></div>
@@ -132,8 +132,7 @@ index df0654a..315bf3a 100644
 <li>The remaining lines are the most interesting, they show us the actual differences and the lines on which they occur. In particular, the <code>+</code> markers in the first column show where we have added lines.</li>
 </ol>
 <p>After reviewing our change, it’s time to commit it:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -m <span class="st">&quot;Add concerns about effects of Mars&#39; moons on Wolfman&quot;</span>
-$ <span class="kw">git</span> status</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit</code></pre></div>
 <pre class="output"><code># On branch master
 # Changes not staged for commit:
 #   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
@@ -144,11 +143,39 @@ $ <span class="kw">git</span> status</code></pre></div>
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
 <p>Whoops: Git won’t commit because we didn’t use <code>git add</code> first. Let’s fix that:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add mars.txt
-$ <span class="kw">git</span> commit -m <span class="st">&quot;Add concerns about effects of Mars&#39; moons on Wolfman&quot;</span></code></pre></div>
+$ <span class="kw">git</span> commit</code></pre></div>
+<p>After saving the file with “Add concerns about effects of Mars’ moons on Wolfman” at the top:</p>
 <pre class="output"><code>[master 34961b1] Add concerns about effects of Mars&#39; moons on Wolfman
  1 file changed, 1 insertion(+)</code></pre>
 <p>Git insists that we add files to the set we want to commit before actually committing anything because we may not want to commit everything at once. For example, suppose we’re adding a few citations to our supervisor’s work to our thesis. We might want to commit those additions, and the corresponding addition to the bibliography, but <em>not</em> commit the work we’re doing on the conclusion (which we haven’t finished yet).</p>
 <p>To allow for this, Git has a special <em>staging area</em> where it keeps track of things that have been added to the current <a href="reference.html#change-set">change set</a> but not yet committed.</p>
+<h3 id="making-a-commit">Making a commit</h3>
+<p>Commits in are made in four steps:</p>
+<ol style="list-style-type: decimal">
+<li>Modify or create files.</li>
+<li>Stage the untracked or modified files using <code>git add</code>.</li>
+<li>Commit the staged files using <code>git commit</code>.</li>
+<li>Write a commit message.</li>
+</ol>
+<p>This is a lot of steps, and <code>git commit</code> does have options to simply the last three:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><code>git commit</code> Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>-a</code></td>
+<td align="left">Stage all modified files when commiting</td>
+</tr>
+<tr class="even">
+<td align="left"><code>-m</code> “<em>message</em>”</td>
+<td align="left">Write a short commit message without opening the text editor</td>
+</tr>
+</tbody>
+</table>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="staging-area"><span class="glyphicon glyphicon-pushpin"></span>Staging area</h2>

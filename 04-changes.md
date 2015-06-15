@@ -89,8 +89,11 @@ To get it to do that,
 we need to run one more command:
 
 ~~~ {.bash}
-$ git commit -m "Start notes on Mars as a base"
+$ git commit
 ~~~
+
+This gives us a text editor to write a message for the commit. Type the words: "Start notes on Mars as a base", save, and quit:
+
 ~~~ {.output}
 [master (root-commit) f22b25e] Start notes on Mars as a base
  1 file changed, 1 insertion(+)
@@ -103,12 +106,6 @@ and stores a copy permanently inside the special `.git` directory.
 This permanent copy is called a [commit](reference.html#commit)
 (or [revision](reference.html#revision)) and its short identifier is `f22b25e`
 (Your commit may have another identifier.)
-
-We use the `-m` flag (for "message")
-to record a short, descriptive, and specific comment that will help us remember later on what we did and why.
-If we just run `git commit` without the `-m` option,
-Git will launch `nano` (or whatever other editor we configured as `core.editor`)
-so that we can write a longer message.
 
 [Good commit messages][commit-messages] start with a brief (<50 characters) summary of
 changes made in the commit.  If you want to go into more detail, add
@@ -230,8 +227,7 @@ If we break it down into pieces:
 After reviewing our change, it's time to commit it:
 
 ~~~ {.bash}
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
-$ git status
+$ git commit
 ~~~
 ~~~ {.output}
 # On branch master
@@ -250,8 +246,10 @@ Let's fix that:
 
 ~~~ {.bash}
 $ git add mars.txt
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
+$ git commit
 ~~~
+After saving the file with "Add concerns about effects of Mars' moons on Wolfman" at the top:
+
 ~~~ {.output}
 [master 34961b1] Add concerns about effects of Mars' moons on Wolfman
  1 file changed, 1 insertion(+)
@@ -273,6 +271,22 @@ Git has a special *staging area*
 where it keeps track of things that have been added to
 the current [change set](reference.html#change-set)
 but not yet committed.
+
+### Making a commit
+Commits in are made in four steps:
+
+1. Modify or create files.
+2. Stage the untracked or modified files using `git add`.
+3. Commit the staged files using `git commit`.
+4. Write a commit message.
+
+This is a lot of steps, and `git commit` does have options to simply the last three:
+
+| `git commit` Option   | Description                                                  |
+|:----------------------|:-------------------------------------------------------------|
+| `-a`                  | Stage all modified files when commiting                      |
+| `-m ` "*message*"     | Write a short commit message without opening the text editor |
+
 
 > ## Staging area {.callout}
 > If you think of Git as taking snapshots of changes over the life of a
