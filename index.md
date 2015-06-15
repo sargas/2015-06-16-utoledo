@@ -53,7 +53,7 @@ to be shared can and should be stored in a version control system.
 >
 > Please [install](00-install.html) Git before the workshop, and register for a [GitHub account](https://github.com/join).
 
-## Topics
+## Topics -- Day 1
 
 0.  [Installing Git](00-install.html)
 1.  [Automated Version Control](01-basics.html)
@@ -62,12 +62,21 @@ to be shared can and should be stored in a version control system.
 4.  [Tracking Changes](04-changes.html)
 5.  [Exploring History](05-history.html)
 6.  [Ignoring Things](06-ignore.html)
+
+## Topics -- Day 2
 7.  [Remotes in GitHub](07-github.html)
 8.  [Collaborating](08-collab.html)
 9.  [Conflicts](09-conflict.html)
 10. [Open Science](10-open.html)
 11. [Licensing](11-licensing.html)
 12. [Hosting](12-hosting.html)
+
+## External Resources
+*   [Pro Git](https://git-scm.com/book/en), a freely available book on Git.
+*   [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/), a reference with rough instructions for many of Git's features.
+*   [GUI Clients](https://git-scm.com/downloads/guis) for Git.
+*   [Git Cheatsheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf) from GitHub.
+*   [Training Classes](https://training.github.com/classes/) from GitHub, a series of MOOCs for various backgrounds.
 
 ## Other Resources
 
