@@ -8,7 +8,7 @@ minutes: 25
 >
 > *   Identify and use Git commit numbers.
 > *   Compare various versions of tracked files.
-> *   Restore old versions of files.
+> *   Seeing what changed in specific commits.
 
 If we want to see what we changed at different steps, we can use `git diff`
 again, but with the notation `HEAD~1`, `HEAD~2`, and so on, to refer to old
@@ -92,131 +92,47 @@ index df0654a..b36abfd 100644
 +But the Mummy will appreciate the lack of humidity
 ~~~
 
-
-All right! So
-we can save changes to files and see what we've changed&mdash;now how
-can we restore older versions of things?
-Let's suppose we accidentally overwrite our file:
+Instead of finding what has changed since a commit, we can show what has changed in
+only one commit by using `git show`:
 
 ~~~ {.bash}
-$ nano mars.txt
-$ cat mars.txt
+$ git show f22b25e
 ~~~
 ~~~ {.output}
-We will need to manufacture our own oxygen
+commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 09:51:46 2013 -0400
+
+    Start notes on Mars as a base
+
+diff --git a/mars.txt b/mars.txt
+new file mode 100644
+index 0000000..df0654a
+--- /dev/null
++++ b/mars.txt
+@@ -0,0 +1 @@
++Cold and dry, but everything is my favorite color
 ~~~
 
-`git status` now tells us that the file has been changed,
-but those changes haven't been staged:
+Running `git show` without any arguments is the same as `git show HEAD`,
+showing you the most recent commit very quickly:
 
 ~~~ {.bash}
-$ git status
+$ git show
 ~~~
 ~~~ {.output}
-# On branch master
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#	modified:   mars.txt
-#
-no changes added to commit (use "git add" and/or "git commit -a")
+commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 10:14:07 2013 -0400
+
+    Discuss concerns about Mars' climate for Mummy
+
+diff --git a/mars.txt b/mars.txt
+index 315bf3a..b36abfd 100644
+--- a/mars.txt
++++ b/mars.txt
+@@ -1,2 +1,3 @@
+ Cold and dry, but everything is my favorite color
+ The two moons may be a problem for Wolfman
++But the Mummy will appreciate the lack of humidity
 ~~~
-
-We can put things back the way they were
-by using `git checkout`:
-
-~~~ {.bash}
-$ git checkout HEAD mars.txt
-$ cat mars.txt
-~~~
-~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-~~~
-
-As you might guess from its name,
-`git checkout` checks out (i.e., restores) an old version of a file.
-In this case,
-we're telling Git that we want to recover the version of the file recorded in `HEAD`,
-which is the last saved commit.
-If we want to go back even further,
-we can use a commit identifier instead:
-
-~~~ {.bash}
-$ git checkout f22b25e mars.txt
-~~~
-
-It's important to remember that
-we must use the commit number that identifies the state of the repository
-*before* the change we're trying to undo.
-A common mistake is to use the number of
-the commit in which we made the change we're trying to get rid of.
-In the example below, we want to retrieve the state from before the most
-recent commit (`HEAD~1`), which is commit `f22b25e`:
-
-![Git Checkout](fig/git-checkout.svg)
-
-So, to put it all together:
-
-> ## How Git works, in cartoon form {.callout}
-> ![http://figshare.com/articles/How_Git_works_a_cartoon/1328266](fig/git_staging.svg)
-
-> ## Simplifying the Common Case {.callout}
->
-> If you read the output of `git status` carefully,
-> you'll see that it includes this hint:
->
-> ~~~ {.bash}
-> (use "git checkout -- <file>..." to discard changes in working directory)
-> ~~~
->
-> As it says,
-> `git checkout` without a version identifier restores files to the state saved in `HEAD`.
-> The double dash `--` is needed to separate the names of the files being recovered
-> from the command itself:
-> without it,
-> Git would try to use the name of the file as the commit identifier.
-
-The fact that files can be reverted one by one
-tends to change the way people organize their work.
-If everything is in one large document,
-it's hard (but not impossible) to undo changes to the introduction
-without also undoing changes made later to the conclusion.
-If the introduction and conclusion are stored in separate files,
-on the other hand,
-moving backward and forward in time becomes much easier.
-
-
-> ## Recovering Older Versions of a File {.challenge}
->
-> Jennifer has made changes to the Python script that she has been working on for weeks, and the
-> modifications she made this morning "broke" the script and it no longer runs. She has spent
-> ~ 1hr trying to fix it, with no luck...
->
-> Luckily, she has been keeping track of her project's versions using Git! Which commands below will
-> let her recover the last committed version of her Python script called
-> `data_cruncher.py`?
->
-> 1. 
->
->     ~~~
->     $ git checkout HEAD
->     ~~~
-> 2. 
->
->     ~~~
->     $ git checkout HEAD data_cruncher.py
->     ~~~
-> 3. 
->
->     ~~~
->     $ git checkout HEAD~1 data_cruncher.py
->     ~~~
-> 4. 
->
->     ~~~
->     $ git checkout <unique ID of last commit> data_cruncher.py
->     ~~~
-> 5. Both 2 & 4

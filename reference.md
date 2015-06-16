@@ -25,7 +25,12 @@ subtitle: Reference
 ## [Exploring History](05-history.html)
 
 *   `git diff` displays differences between revisions.
+*   `git show` displays what changed in a revision.
+
+## [Undoing Changes](13-undoing.html)
+
 *   `git checkout` recovers old versions of files.
+*   `git reset` either unstages files or goes backwards in the commit history.
 
 ## [Ignoring Things](06-ignore.html)
 
