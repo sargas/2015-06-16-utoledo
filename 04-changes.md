@@ -146,6 +146,15 @@ the commit's author,
 when it was created,
 and the log message Git was given when the commit was created.
 
+Useful options to `git log` include:
+
+| `git log` Option   | Description                                          |
+|:-------------------|:-----------------------------------------------------|
+| `--online`         | Display oneline summary of each commit.              |
+| `--graph`          | Show graphical view of history                       |
+
+
+
 > ## Where Are My Changes? {.callout}
 >
 > If we run `ls` at this point, we will still see just one file called `mars.txt`.
