@@ -53,7 +53,7 @@ to be shared can and should be stored in a version control system.
 >
 > Please [install](00-install.html) Git before the workshop, and register for a [GitHub account](https://github.com/join).
 
-## Topics -- Day 1
+## Topics &mdash; Day 1
 
 0.  [Installing Git](00-install.html)
 1.  [Automated Version Control](01-basics.html)
@@ -63,7 +63,7 @@ to be shared can and should be stored in a version control system.
 5.  [Exploring History](05-history.html)
 6.  [Ignoring Things](06-ignore.html)
 
-## Topics -- Day 2
+## Topics &mdash; Day 2
 7.  [Remotes in GitHub](07-github.html)
 8.  [Collaborating](08-collab.html)
 9.  [Conflicts](09-conflict.html)
@@ -77,6 +77,7 @@ to be shared can and should be stored in a version control system.
 *   [GUI Clients](https://git-scm.com/downloads/guis) for Git.
 *   [Git Cheatsheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf) from GitHub.
 *   [Training Classes](https://training.github.com/classes/) from GitHub, a series of MOOCs for various backgrounds.
+*   [Video From Linus](http://www.youtube.com/watch?v=4XpnKHJAok8) talking about Git's design (and badmouthing just about every other VCS).
 
 ## Other Resources
 
