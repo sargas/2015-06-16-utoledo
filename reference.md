@@ -48,11 +48,11 @@ subtitle: Reference
 *   `git clone` copies a remote repository to create a local repository
     with a remote called `origin` automatically set up.
 
-## [Conflicts](09-conflict.html)
+## [Pull Requests](09-pulls.html)
 
-*   Conflicts occur when two or more people change the same file(s) at the same time.
-*   The version control system does not allow people to blindly overwrite each other's changes.
-    Instead, it highlights conflicts so that they can be resolved.
+*   It is great to be able to make changes to a repository, but even better to get those changes
+    to the owners everyone trusts
+*   GitHub's pull request feature enables online collaboration
 
 ## [Open Science](10-open.html)
 
