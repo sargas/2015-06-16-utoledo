@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Version Control with Git</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Version Control with Git</h1></a>
+          <h2 class="subtitle">Side-by-Side Development</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Create and checkout branches.</li>
+<li>Create commits that are the merger of multiple branches.</li>
+</ul>
+</div>
+</section>
+<p>Sometimes it is useful to work on a group commits together and keep them separate from your main history. For example, Wolfman might work on changing the transfer orbit calculations to take into account the availability of solar sail technology to create lighter spacecraft. This might take several days, and Wolfman might want to work on this while everyone is still working on the old code.</p>
+<p>Branches are also useful when you have multiple independent aspects of a project to work on. For example, while updating your LabView programming to take more detailed measurements, you might realize the same program needs to be used to generate data for a conference in a few days. You need a couple changes for the conference, but do not want to involve (or use) the changes for more detailed measurements. Putting the latest work in a separate branch allows simple multitasking without affecting each project. After the programming for the more detailed measurements is done, the fixes in one branch can be merged into the other.</p>
+<p>By convention, Git projects have a <code>master</code> branch and large additions/changes happen by merging branches. This has the advantage that the non-<code>master</code> branches can be reordered, rewritten, (or otherwise have their history changed); and <code>master</code> will contain a nicely organized commit history:</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="how-git-branches-are-used-by-convention"><span class="glyphicon glyphicon-pushpin"></span>How Git branches are used, by convention</h2>
+</div>
+<div class="panel-body">
+<div class="figure">
+<img src="fig/git-branch-history.png" alt="http://img.hades.name/blog-media/git/git-history.png" />
+<p class="caption">http://img.hades.name/blog-media/git/git-history.png</p>
+</div>
+</div>
+</aside>
+<p>So let’s take a look at how to tell what branch we are developing on and what branches exist. Many commands, including <code>git status</code>, has indicated the current branch:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre></div>
+<pre class="output"><code>On branch master
+nothing to commit, working directory clean</code></pre>
+<p>We can also view branches by using the <code>--decorate</code> option to <code>git log</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log --oneline --decorate</code></pre></div>
+<pre class="output"><code>cab71b9 (HEAD, master) Add ignore file
+26be060 Add conerns about effects of Mars&#39; moons on Wolfman
+3dd9a07 Start notes on Mars as a base</code></pre>
+<p>To create a new branch, use <code>git branch</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> branch major-changes</code></pre></div>
+<p>This creates a branch named <code>major-changes</code> that is located at the current head. This can be seen in the log:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log --oneline --decorate</code></pre></div>
+<pre class="output"><code>cab71b9 (HEAD, master, major-changes) Add ignore file
+26be060 Add conerns about effects of Mars&#39; moons on Wolfman
+3dd9a07 Start notes on Mars as a base</code></pre>
+<p>We can also see that we haven’t changed the current branch by using <code>git status</code>:</p>
+<pre class="output"><code>On branch master
+nothing to commit, working directory clean</code></pre>
+<p>Switching branches is another use of the <code>git checkout</code> command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> checkout major-changes</code></pre></div>
+<pre class="output"><code>Switched to branch &#39;major-changes&#39;</code></pre>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="creating-and-using-a-new-branch"><span class="glyphicon glyphicon-pushpin"></span>Creating and Using a New Branch</h2>
+</div>
+<div class="panel-body">
+<p>Instead of using <code>git branch</code> to create a branch, and <code>git checkout</code> to switch to it; you can just use <code>git checkout -b</code> to checkout a new branch.</p>
+</div>
+</aside>
+<p>Perhaps we would like to change all the text files to be numbered. Edit <code>mars.txt</code> to number the lines, then commit the change:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -a -m <span class="st">&quot;Number each note about planet&quot;</span></code></pre></div>
+<pre class="output"><code>[major-changes 992de4b] Number each note about planet
+ 1 files changed, 3 insertions(+), 3 deletions(-)</code></pre>
+<p>We can see that this commit did not affect the <code>master</code> branch by looking at the decorated log again:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log --oneline --decorate</code></pre></div>
+<pre class="output"><code>992de4b (HEAD, major-changes) Number each note about planet
+cab71b9 (master) Add ignore file
+26be060 Add conerns about effects of Mars&#39; moons on Wolfman
+3dd9a07 Start notes on Mars as a base</code></pre>
+<p>We can even go back to the <code>master</code> branch and see the log does not contain the newest changes:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> checkout master
+$ <span class="kw">git</span> log --oneline --decorate</code></pre></div>
+<pre class="output"><code>cab71b9 (HEAD, master) Add ignore file
+26be060 Add conerns about effects of Mars&#39; moons on Wolfman
+3dd9a07 Start notes on Mars as a base</code></pre>
+<p>The commits in other branches can be viewed with the <code>--all</code> option:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log --oneline --decorate --all</code></pre></div>
+<pre class="output"><code>992de4b (major-changes) Number each note about planet
+cab71b9 (HEAD, master) Add ignore file
+26be060 Add conerns about effects of Mars&#39; moons on Wolfman
+3dd9a07 Start notes on Mars as a base</code></pre>
+<p>A central tenant of Git is the ease at which branches can be merged —some open source work on all their features in separate branches before merging them to the <code>master</code> branch.</p>
+<p>To incorporate the changes in the <code>major-changes</code> branch, use <code>git merge</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> merge major-changes</code></pre></div>
+<pre class="output"><code>Updating cab71b9..992de4b
+Fast-forward
+ mars.txt    | 6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)</code></pre>
+<p>We can verify the changes have been merged by looking at the log again:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log --oneline --decorate --all</code></pre></div>
+<pre class="output"><code>992de4b (HEAD, master, major-changes) Number each note about planet
+cab71b9 Add ignore file
+26be060 Add conerns about effects of Mars&#39; moons on Wolfman
+3dd9a07 Start notes on Mars as a base</code></pre>
+<p>And we can now safely remove the old branch:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> branch -d major-changes</code></pre></div>
+<pre class="output"><code>Deleted branch major-changes (was 992de4b).</code></pre>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/git-novice">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

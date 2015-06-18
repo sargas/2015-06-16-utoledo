@@ -65,12 +65,13 @@ to be shared can and should be stored in a version control system.
 7.  [Ignoring Things](06-ignore.html)
 
 ## Topics &mdash; Day 2
-8.  [Remotes in GitHub](07-github.html)
-9.  [Collaborating](08-collab.html)
-10. [Conflicts](09-conflict.html)
-11. [Open Science](10-open.html)
-12. [Licensing](11-licensing.html)
-13. [Hosting](12-hosting.html)
+8.  [Side-By-Side Development](14-branching.html)
+9.  [Remotes in GitHub](07-github.html)
+10. [Collaborating](08-collab.html)
+11. [Conflicts](09-conflict.html)
+12. [Open Science](10-open.html)
+13. [Licensing](11-licensing.html)
+14. [Hosting](12-hosting.html)
 
 ## External Resources
 *   [Pro Git](https://git-scm.com/book/en), a freely available book on Git.

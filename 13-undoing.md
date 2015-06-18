@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Version Control with Git
-subtitle: Undoing Mistakes
+subtitle: Undoing Changes
 minutes: 25
 ---
 > ## Learning Objectives {.objectives}
