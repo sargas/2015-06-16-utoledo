@@ -33,8 +33,9 @@ He also has to set his favorite text editor, following this table:
 | Editor             | Configuration command                            |
 |:-------------------|:-------------------------------------------------|
 | nano               | `$ git config --global core.editor "nano -w"`    |
+| emacs              | `$ git config --global core.editor "emacs"`      |
+| vim                | `$ git config --global core.editor "vim"`        |
 | Text Wrangler      | `$ git config --global core.editor "edit -w"`    |
-| Emacs GUI (Mac)    | `$ git config --global core.editor "/Applications/Emacs.app/Contents/MacOS/Emacs"`|
 | Sublime Text (Mac) | `$ git config --global core.editor "subl -n -w"` |
 | Sublime Text (Win) | `$ git config --global core.editor "'c:/program files/sublime text 2/sublime_text.exe' -w"` |
 | Notepad++ (Win)    | `$ git config --global core.editor "'c:/program files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"`|
