@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Version Control with Git</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Version Control with Git</h1></a>
+          <h2 class="subtitle">Pull Requests</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Explain how to contribute to an established project.</li>
+</ul>
+</div>
+</section>
+<p>Have you ever found a typo in an open source project? Ever wished your favorite numerical code would have a built-in option for something you re-implement with every project?</p>
+<p>Git makes it easy to help out projects. Let’s take an example of a <a href="https://github.com/utoledo-phyast-workshop/workshop-roster">workshop roster</a>. If your name is missing, why not add it?</p>
+<p><a href="reference.html#fork">Fork</a>ing is the operation of creating our own version of a software— something GitHub readily encourages. Click the “Fork” button in the upper right corner to create a version of this repository for your own use.</p>
+<div class="figure">
+<img src="fig/github-fork-button.png" alt="Forking a Project in GitHub" />
+<p class="caption">Forking a Project in GitHub</p>
+</div>
+<p>Forking in GitHub creates a new repository in your account. You have full access to this repository: consider this a playground to make any changes you’d like. It is easier to make changes to the repository on your own computer, so clone the repository to have yet another copy:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> clone https://github.com/your-username/workshop-roster.git</code></pre></div>
+<pre class="output"><code>Cloning into &#39;workshop-roster&#39;...
+remote: Counting objects: 8, done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 8 (delta 0), reused 8 (delta 0), pack-reused 0
+Unpacking objects: 100% (8/8), done.
+Checking connectivity... done.</code></pre>
+<p>Important: the URL should be different for everyone in the workshop.</p>
+<p>Now we can work on our changes on a separate branch:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> workshop-roster/
+$ <span class="kw">git</span> checkout -b add-myname
+$ <span class="kw">nano</span> myname.txt
+$ <span class="kw">git</span> add myname.txt
+$ <span class="kw">git</span> commit</code></pre></div>
+<p>Add any information you’d like to the text file you create.</p>
+<p>When you have a set of commits that you feel should be merged, there must be some way of letting someone with commit rights (i.e., the instructor) see the commits. In Linux, the developers use <code>git format-patch</code> to create emailable files listing the changes.</p>
+<p>GitHub provides a convenient way of using the website to share code. The concept is called a <a href="reference.html#pull-request">pull request</a>, in which you ask the project to pull commits from your work.</p>
+<p>To begin, your branch must be pushed to GitHub’s repository:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> push origin add-myname</code></pre></div>
+<pre class="output"><code>Username for &#39;https://github.com&#39;: your-username
+Password for &#39;https://your-username@github.com&#39;:
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 281 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To https://github.com/sargas/workshop-roster.git
+ * [new branch]      add-myname -&gt; add-myname</code></pre>
+<p>GitHub should notice that you just pushed a new branch, and will offer to allow you to submit a pull request for it:</p>
+<div class="figure">
+<img src="fig/github-pullrequest-button.png" alt="GitHub offers a Compare &amp; pull request button" />
+<p class="caption">GitHub offers a “Compare &amp; pull request” button</p>
+</div>
+<p>GitHub allows one to fill out the request, giving extra information (like a description of the branch or justification for why it should be included).</p>
+<p>Many times, project developers will have suggestions to improve the pull request. These can include style guidelines, different approaches, documentation, or testing. Continue to push to the same branch in order to keep your changes as part of the same pull request. There are good guides to <a href="https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase">updating</a> your branch in light of future changes, and fixing <a href="https://swcarpentry.github.io/git-novice/09-conflict.html">conflicts</a> that arise.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/git-novice">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

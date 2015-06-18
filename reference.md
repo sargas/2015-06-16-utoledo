@@ -97,6 +97,11 @@ conflict
     Helping users [resolve](#resolve) conflicts
     is one of version control's major tasks.
 
+fork
+:   A copy of a project made to continue development separately. Notable forks include Emacs/XEmacs,
+    GCC/ecgs, ffmpeg/libav, and Firefox/Mozilla. Forks are very easy to create and merge in Git,
+	contributing to their wide usage in many workflows.
+
 HTTP
 :   The Hypertext Transfer [Protocol](#protocol) used for sharing web pages and other data
     on the World Wide Web.
@@ -115,6 +120,9 @@ merge
 protocol
 :   A set of rules that define how one computer communicates with another.
     Common protocols on the Internet include [HTTP](#http) and [SSH](#ssh).
+
+pull request
+:   A request that someone merge changes from your repository.
 
 remote
 :   (of a repository) A version control [repository](#repository) connected to another,
